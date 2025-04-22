@@ -54,45 +54,43 @@ export default function GenderDropDown() {
             Genders
           </Button>
         </PopoverTrigger>
-        <PopoverContent
-          className="p-0 w-44 poppins"
-          side="bottom"
-          align="end"
-        >
+        <PopoverContent className="p-0 w-44 poppins" side="bottom" align="end">
           <Command className="p-1">
             <CommandList>
               <CommandEmpty className="text-slate-500 text-sm text-center p-5">
                 No gender found.
               </CommandEmpty>
               <CommandGroup>
-  {genders.map((gender) => (
-    <CommandItem
-      onSelect={() => toggleGenders(gender.value)}
-      className="h-9"
-      key={gender.value}
-    >
-      <Checkbox
-        checked={selectedGenders.includes(gender.value)}
-        className="size-4 rounded-[4px]"
-      />
-      <div className="flex items-center justify-between w-full gap-1 p-1 rounded-lg px-3 text-[14px]">
-        <span>{gender.label}</span>
-        <span className="font-bold text-primary">
-          {renderGenderNumbers(gender.value)}
-        </span>
-      </div>
-    </CommandItem>
-  ))}
-</CommandGroup>
-              <Separator className="my-1" />
-              <CommandGroup className="flex items-center justify-between px-3 py-2 text-sm text-slate-500">
-                <span>Selected</span>
-                <span className="font-bold text-primary">
-                  {selectedGenders.length}
-                </span>
+                {genders.map((gender) => (
+                  <CommandItem
+                    onSelect={() => toggleGenders(gender.value)}
+                    className="h-9"
+                    key={gender.value}
+                  >
+                    <Checkbox
+                      checked={selectedGenders.includes(gender.value)}
+                      className="size-4 rounded-[4px]"
+                    />
+                    <div className="flex items-center justify-between w-full gap-1 p-1 rounded-lg px-3 text-[14px]">
+                      <span>{gender.label}</span>
+                      <span className="font-bold text-primary">
+                        {renderGenderNumbers(gender.value)}
+                      </span>
+                    </div>
+                  </CommandItem>
+                ))}
               </CommandGroup>
-              <CommandEmpty className="text-slate-500 text-sm text-center p-5"></CommandEmpty>
             </CommandList>
+            <div className="flex flex-col gap-2 text-[23px]">
+              <Separator />
+              <Button
+                onClick={() => setSelectedGenders([])}
+                variant="ghost"
+                className="text-[12px] mb-1"
+              >
+                Clear Filters
+              </Button>
+            </div>
           </Command>
         </PopoverContent>
       </Popover>
